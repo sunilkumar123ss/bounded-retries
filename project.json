@@ -1,0 +1,8 @@
+{
+  "slug": "bounded-retries",
+  "title": "Bounded retries for tool adapters",
+  "description": "Retries only explicitly transient failures, with capped exponential backoff, a maximum attempt count, and a total scheduled-delay budget. Permanent errors stop immediately. The default simulation records proposed delays and does not sleep or call a service. This is not a wall-clock execution timeout: a real adapter also needs per-call timeout/cancellation and idempotency protection for side effects.",
+  "category": "agents",
+  "demo_args": [],
+  "expected_exit": 0
+}
