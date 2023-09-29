@@ -29,3 +29,21 @@ def retry(operation, sleep, max_attempts=4, base_delay=0.25, max_delay=2.0, dela
             sleep(delay)
             waited+=delay
 
+
+def simulate(outcomes, **settings):
+    if not isinstance(outcomes,list) or not outcomes or any(x not in {"success","transient","permanent"} for x in outcomes):
+        raise ValueError("outcomes must be a nonempty list of success/transient/permanent")
+    calls=0
+    def operation():
+        nonlocal calls
+        outcome=outcomes[min(calls,len(outcomes)-1)]
+        calls+=1
+        if outcome == "transient":raise TransientError("synthetic temporary failure")
+        if outcome == "permanent":raise PermanentError("synthetic non-retryable failure")
+        return "synthetic tool result"
+    delays=[]
+    try:
+        return {"status":"success", **retry(operation,delays.append,**settings), "delays":delays}
+    except (RetryExhausted,PermanentError) as exc:
+        return {"status":"failed", "reason":str(exc), "attempts":calls, "delays":delays}
+
