@@ -47,3 +47,16 @@ def simulate(outcomes, **settings):
     except (RetryExhausted,PermanentError) as exc:
         return {"status":"failed", "reason":str(exc), "attempts":calls, "delays":delays}
 
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--plan",type=Path,default=Path(__file__).with_name("plan.json"))
+    parser.add_argument("--attempts",type=int,default=4)
+    parser.add_argument("--delay-budget",type=float,default=5)
+    args=parser.parse_args()
+    try:result=simulate(json.loads(args.plan.read_text()),max_attempts=args.attempts,delay_budget=args.delay_budget)
+    except (ValueError,OSError,TypeError) as exc:parser.error(str(exc))
+    print(json.dumps(result,indent=2))
+    if result["status"] != "success":raise SystemExit(1)
+
+if __name__ == "__main__":main()
