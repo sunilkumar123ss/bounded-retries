@@ -16,4 +16,7 @@ class RetryTests(unittest.TestCase):
         result=simulate(["transient","transient","success"])
         self.assertEqual(result["attempts"],3)
         self.assertEqual(result["delays"],[0.25,0.5])
+    def test_permanent_does_not_retry(self):
+        result=simulate(["permanent","success"])
+        self.assertEqual(result["attempts"],1);self.assertEqual(result["delays"],[])
 
