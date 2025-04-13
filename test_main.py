@@ -19,4 +19,7 @@ class RetryTests(unittest.TestCase):
     def test_permanent_does_not_retry(self):
         result=simulate(["permanent","success"])
         self.assertEqual(result["attempts"],1);self.assertEqual(result["delays"],[])
+    def test_attempt_limit_has_no_final_sleep(self):
+        result=simulate(["transient"],max_attempts=3)
+        self.assertEqual(result["attempts"],3);self.assertEqual(len(result["delays"]),2)
 

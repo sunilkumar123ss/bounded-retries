@@ -4,7 +4,7 @@ This reference implementation and all of the following milestone commits were pr
 
 **Every recorded author and committer date in this timeline is synthetic. These dates are not evidence that the code was written, tested, deployed, or used professionally in the past.**
 
-This snapshot is milestone 7 of 13. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
+This snapshot is milestone 8 of 13. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
 
 The progression decomposes already-completed October 2026 code into meaningful additions. It is not recovered original development history. Publication time is separate from the synthetic Git timestamps.
 
@@ -19,7 +19,7 @@ The progression decomposes already-completed October 2026 code into meaningful a
 | 5 | 2023-10-06T15:10:18+05:30 | Expose the command-line demonstration and input handling (present) |
 | 6 | 2023-11-28T14:55:27+05:30 | Test transient then success (present) |
 | 7 | 2024-02-20T13:40:55+05:30 | Test permanent does not retry (present) |
-| 8 | 2025-04-13T11:05:56+05:30 | Test attempt limit has no final sleep (later stage) |
+| 8 | 2025-04-13T11:05:56+05:30 | Test attempt limit has no final sleep (present) |
 | 9 | 2025-05-21T13:26:56+05:30 | Test delay budget prevents next attempt (later stage) |
 | 10 | 2025-07-22T13:22:20+05:30 | Test invalid policy (later stage) |
 | 11 | 2025-11-06T11:01:39+05:30 | Add one-command test, demonstration and CLI verification (later stage) |
