@@ -22,4 +22,7 @@ class RetryTests(unittest.TestCase):
     def test_attempt_limit_has_no_final_sleep(self):
         result=simulate(["transient"],max_attempts=3)
         self.assertEqual(result["attempts"],3);self.assertEqual(len(result["delays"]),2)
+    def test_delay_budget_prevents_next_attempt(self):
+        result=simulate(["transient"],delay_budget=0.1)
+        self.assertEqual(result["attempts"],1);self.assertEqual(result["delays"],[])
 
