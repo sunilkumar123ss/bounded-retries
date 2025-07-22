@@ -25,4 +25,7 @@ class RetryTests(unittest.TestCase):
     def test_delay_budget_prevents_next_attempt(self):
         result=simulate(["transient"],delay_budget=0.1)
         self.assertEqual(result["attempts"],1);self.assertEqual(result["delays"],[])
+    def test_invalid_policy(self):
+        with self.assertRaises(ValueError):retry(lambda:1,lambda _:None,max_attempts=0)
 
+if __name__ == "__main__":unittest.main()
